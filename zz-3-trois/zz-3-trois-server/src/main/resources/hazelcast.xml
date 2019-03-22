@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xmlns="http://www.hazelcast.com/schema/config"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.hazelcast.com/schema/config
+           http://www.hazelcast.com/schema/config/hazelcast-config-3.11.xsd">
+
+	<group>
+		<name>trois</name>
+	</group>
+
+	<management-center enabled="true">http://localhost:8080/hazelcast-mancenter
+	</management-center>
+
+	<network>
+		<port>8000</port>
+		<join>
+			<multicast enabled="false" />
+			<tcp-ip enabled="true">
+				<member-list>
+					<member>127.0.0.1:8000</member>
+				</member-list>
+			</tcp-ip>
+		</join>
+	</network>
+	
+	<map name="*">
+		<entry-listeners>
+			<entry-listener include-value="true" local="true">neil.demo.mar26.MyLoggingListener</entry-listener>
+		</entry-listeners>
+	</map>
+
+</hazelcast>
